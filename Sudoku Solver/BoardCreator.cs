@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 
-namespace SudokuSolver.Properties {
-    public class BoardCreator {
+namespace SudokuSolver {
+    public static class BoardCreator {
         public static int[,] GetBoardFromBoardlines(string[] boardLines) {
             try {
                 return CreateBoard(boardLines);
