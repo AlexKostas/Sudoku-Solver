@@ -31,7 +31,7 @@ namespace SudokuSolver.Strategies {
         void EliminateNakedPairFromOthersInCol(int[,] board, int givenRow, int givenCol) {
             if (!HasNakedPairInCol(board, givenRow, givenCol)) return;
 
-            for (int row = 0; row < board.GetLength(1); row++)
+            for (int row = 0; row < board.GetLength(0); row++)
                 if (board[row, givenCol] != board[givenRow, givenCol] && board[row, givenCol].ToString().Length > 1) {
                     EliminateNakedPair(board, board[givenRow, givenCol], row, givenCol);
                 }
@@ -42,8 +42,8 @@ namespace SudokuSolver.Strategies {
 
             var sudokuMap = sudokuMapper.Find(givenRow, givenCol);
 
-            for (int row = sudokuMap.StartRow; row < sudokuMap.StartRow + 2; row++) {
-                for (int col = sudokuMap.StartColumn; col < sudokuMap.StartColumn + 2; col++)
+            for (int row = sudokuMap.StartRow; row <= sudokuMap.StartRow + 2; row++) {
+                for (int col = sudokuMap.StartColumn; col <= sudokuMap.StartColumn + 2; col++)
                     if (board[row, col].ToString().Length > 1 && board[row, col] != board[givenRow, givenCol])
                         EliminateNakedPair(board, board[givenRow, givenCol], row, col);
             }
