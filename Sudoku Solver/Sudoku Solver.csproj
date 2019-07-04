@@ -38,18 +38,19 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="BoardCreator.cs" />
-        <Compile Include="BoardDisplayer.cs" />
-        <Compile Include="BoardStateManager.cs" />
         <Compile Include="Data\SudokuMap.cs" />
+        <Compile Include="Helpers\BoardCreator.cs" />
+        <Compile Include="Helpers\BoardStateManager.cs" />
+        <Compile Include="Helpers\SudokuMapper.cs" />
+        <Compile Include="Helpers\Utils.cs" />
+        <Compile Include="IO\BoardDisplayer.cs" />
+        <Compile Include="IO\SudokuFileReader.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Strategies\ISudokuStrategy.cs" />
         <Compile Include="Strategies\NakedPairsStrategy.cs" />
         <Compile Include="Strategies\SimpleMarkupStrategy.cs" />
         <Compile Include="Strategies\SudokuSolverEngine.cs" />
-        <Compile Include="SudokuFileReader.cs" />
-        <Compile Include="SudokuMapper.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

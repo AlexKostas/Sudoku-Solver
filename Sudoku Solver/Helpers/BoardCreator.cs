@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace SudokuSolver {
+namespace SudokuSolver.Helpers {
     public static class BoardCreator {
         public static int[,] GetBoardFromBoardlines(string[] boardLines) {
             try {

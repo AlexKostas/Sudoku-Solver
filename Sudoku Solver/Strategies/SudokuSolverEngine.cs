@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using SudokuSolver.Helpers;
 
 namespace SudokuSolver.Strategies {
     public class SudokuSolverEngine {

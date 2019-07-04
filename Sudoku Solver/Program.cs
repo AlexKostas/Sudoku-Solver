@@ -1,4 +1,6 @@
 ﻿using System;
+using SudokuSolver.Helpers;
+using SudokuSolver.IO;
 using SudokuSolver.Strategies;
 
 namespace SudokuSolver {

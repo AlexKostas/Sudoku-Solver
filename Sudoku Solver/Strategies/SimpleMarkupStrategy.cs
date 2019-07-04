@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using SudokuSolver.Helpers;
 
 namespace SudokuSolver.Strategies {
     public class SimpleMarkupStrategy : ISudokuStrategy {
@@ -25,11 +24,11 @@ namespace SudokuSolver.Strategies {
         int GetPossibilitiesInRowAndCol(int[,] board, int givenRow, int givenCol) {
             int[] possibilities = {1, 2, 3, 4, 5, 6, 7, 8, 9};
             for (int col = 0; col < 9; col++) 
-                if (IsValidSingle(board[givenRow, col])) possibilities[board[givenRow, col] - 1] = 0;
+                if (Utils.IsValidSingle(board[givenRow, col])) possibilities[board[givenRow, col] - 1] = 0;
             for (int row = 0; row < 9; row++) 
-                if (IsValidSingle(board[row, givenCol])) possibilities[board[row, givenCol] - 1] = 0;
+                if (Utils.IsValidSingle(board[row, givenCol])) possibilities[board[row, givenCol] - 1] = 0;
 
-            return joinNonZeroArrayValues(possibilities);
+            return Utils.joinNonZeroArrayValues(possibilities);
         }    
 
         int GetPossibilitiesInBlock(int[,] board, int givenRow, int givenCol) {
@@ -38,45 +37,18 @@ namespace SudokuSolver.Strategies {
 
             for (int row = sudokuMap.StartRow; row <= sudokuMap.StartRow + 2; row++) {
                 for (int col = sudokuMap.StartColumn; col <= sudokuMap.StartColumn + 2; col++) {
-                    if (IsValidSingle(board[row, col])) possibilities[board[row, col] - 1] = 0;
+                    if (Utils.IsValidSingle(board[row, col])) possibilities[board[row, col] - 1] = 0;
                 }
             }
 
-            return joinNonZeroArrayValues(possibilities);
+            return Utils.joinNonZeroArrayValues(possibilities);
         }
 
         int GetPossibilitiesIntersection(int possibilitiesInRowAndCol, int possibilitiesInBlock) {
-            var possibilitiesInRowAndColCharArray = splitIntegerIntoDigits(possibilitiesInRowAndCol);
-            var possibilitiesInBlockCharArray = splitIntegerIntoDigits(possibilitiesInBlock);
+            var possibilitiesInRowAndColCharArray = Utils.splitIntegerIntoDigits(possibilitiesInRowAndCol);
+            var possibilitiesInBlockCharArray = Utils.splitIntegerIntoDigits(possibilitiesInBlock);
             var possibilitiesIntersection = possibilitiesInBlockCharArray.Intersect(possibilitiesInRowAndColCharArray);
-            return joinNonZeroArrayValues(possibilitiesIntersection);
-        }
-        
-        bool IsValidSingle(int cellDigit) {
-            return cellDigit != 0 && cellDigit.ToString().Length == 1;
-        }
-
-        static int joinNonZeroArrayValues(IEnumerable<int> array) {
-            int result = 0;
-            foreach (var elem in array) {
-                if (elem == 0) continue;
-                result = result * 10 + elem;
-            }
-
-            return result;
-        }
-
-        static IEnumerable<int> splitIntegerIntoDigits(int a) {
-            var result = new List<int>();
-            int b;
-            while(a!=0)   
-            {
-                b=a%10;       //extract a digit
-                result.Add(b);   //adding the digit
-                a=a/10;      //remained number
-            }
-
-            return result;
-        } 
+            return Utils.joinNonZeroArrayValues(possibilitiesIntersection);
+        }     
     }
 }

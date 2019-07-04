@@ -1,7 +1,8 @@
 using System;
 using System.IO;
+using SudokuSolver.Helpers;
 
-namespace SudokuSolver {
+namespace SudokuSolver.IO {
     public static class SudokuFileReader {
         public static int[,] ReadBoardFromFile(string fileName) {
             return BoardCreator.GetBoardFromBoardlines(GetBoardLinesFromFile(fileName));

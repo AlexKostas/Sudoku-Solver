@@ -1,4 +1,5 @@
 using System;
+using SudokuSolver.Helpers;
 
 namespace SudokuSolver.Strategies {
     public class NakedPairsStrategy : ISudokuStrategy {

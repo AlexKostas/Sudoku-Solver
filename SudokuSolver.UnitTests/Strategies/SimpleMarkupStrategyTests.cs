@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SudokuSolver.Helpers;
 using SudokuSolver.Strategies;
 
 namespace SudokuSolver.UnitTests.Strategies {

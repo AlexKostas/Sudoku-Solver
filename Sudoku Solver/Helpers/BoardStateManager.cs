@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace SudokuSolver {
+namespace SudokuSolver.Helpers {
     public class BoardStateManager {
         public string GenerateState(int[,] board) {
             var key = new StringBuilder();

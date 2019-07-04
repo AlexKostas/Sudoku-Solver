@@ -1,6 +1,6 @@
 using System;
 
-namespace SudokuSolver {
+namespace SudokuSolver.IO {
     public class BoardDisplayer {
         public void Display(string title, int[,] board) {
             if (!string.IsNullOrEmpty(title)) Console.WriteLine("{0} {1}", title, Environment.NewLine);
