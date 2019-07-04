@@ -20,10 +20,12 @@ namespace SudokuSolver.Strategies {
             var currentState = boardStateManager.GenerateState(sudokuBoard);
             var nextState = boardStateManager.GenerateState(strategies.First().Solve(sudokuBoard));
 
-            while (!boardStateManager.IsSolved(sudokuBoard) && currentState != nextState) 
+            while (!boardStateManager.IsSolved(sudokuBoard) && currentState != nextState) {
+                currentState = nextState;
                 foreach (var strategy in strategies) 
                     nextState = boardStateManager.GenerateState(strategy.Solve(sudokuBoard));
-            
+            }
+
             return boardStateManager.IsSolved(sudokuBoard);
         }
     }
