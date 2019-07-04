@@ -42,8 +42,9 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Tests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Strategies\NakedPairsStrategyTests.cs" />
+        <Compile Include="Strategies\SimpleMarkupStrategyTests.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Sudoku Solver\Sudoku Solver.csproj">
