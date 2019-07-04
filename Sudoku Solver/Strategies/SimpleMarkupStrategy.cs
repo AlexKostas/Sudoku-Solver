@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SudokuSolver.Strategies {
@@ -28,7 +29,7 @@ namespace SudokuSolver.Strategies {
             for (int row = 0; row < 9; row++) 
                 if (IsValidSingle(board[row, givenCol])) possibilities[board[row, givenCol] - 1] = 0;
 
-            return Convert.ToInt32(string.Join(string.Empty, possibilities.Select(p => p).Where(p => p != 0)));
+            return joinNonZeroArrayValues(possibilities);
         }    
 
         int GetPossibilitiesInBlock(int[,] board, int givenRow, int givenCol) {
@@ -40,19 +41,42 @@ namespace SudokuSolver.Strategies {
                     if (IsValidSingle(board[row, col])) possibilities[board[row, col] - 1] = 0;
                 }
             }
-            
-            return Convert.ToInt32(string.Join(string.Empty, possibilities.Select(p => p).Where(p => p != 0)));
+
+            return joinNonZeroArrayValues(possibilities);
         }
 
         int GetPossibilitiesIntersection(int possibilitiesInRowAndCol, int possibilitiesInBlock) {
-            var possibilitiesInRowAndColCharArray = possibilitiesInRowAndCol.ToString().ToCharArray();
-            var possibilitiesInBlockCharArray = possibilitiesInBlock.ToString().ToCharArray();
+            var possibilitiesInRowAndColCharArray = splitIntegerIntoDigits(possibilitiesInRowAndCol);
+            var possibilitiesInBlockCharArray = splitIntegerIntoDigits(possibilitiesInBlock);
             var possibilitiesIntersection = possibilitiesInBlockCharArray.Intersect(possibilitiesInRowAndColCharArray);
-            return Convert.ToInt32(string.Join(string.Empty, possibilitiesIntersection));
+            return joinNonZeroArrayValues(possibilitiesIntersection);
         }
         
         bool IsValidSingle(int cellDigit) {
             return cellDigit != 0 && cellDigit.ToString().Length == 1;
         }
+
+        static int joinNonZeroArrayValues(IEnumerable<int> array) {
+            int result = 0;
+            foreach (var elem in array) {
+                if (elem == 0) continue;
+                result = result * 10 + elem;
+            }
+
+            return result;
+        }
+
+        static IEnumerable<int> splitIntegerIntoDigits(int a) {
+            var result = new List<int>();
+            int b;
+            while(a!=0)   
+            {
+                b=a%10;       //extract a digit
+                result.Add(b);   //adding the digit
+                a=a/10;      //remained number
+            }
+
+            return result;
+        } 
     }
 }

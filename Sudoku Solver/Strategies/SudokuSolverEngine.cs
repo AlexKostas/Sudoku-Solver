@@ -13,7 +13,8 @@ namespace SudokuSolver.Strategies {
 
         public bool Solve(int[,] sudokuBoard) {
             var strategies = new List<ISudokuStrategy>() {
-                
+                new SimpleMarkupStrategy(sudokuMapper),
+                new NakedPairsStrategy(sudokuMapper)
             };
 
             var currentState = boardStateManager.GenerateState(sudokuBoard);
